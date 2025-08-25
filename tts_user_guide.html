@@ -2,11 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=https://youtube.com/shorts/qmIlH3w5518">
-  
   <title>Redirecting...</title>
+  <script>
+    // ดึง query string จาก URL
+    const params = new URLSearchParams(window.location.search);
+    const lang = params.get("lang") || "";
+
+    // ค่า default URL
+    let targetUrl = "https://youtube.com/shorts/qmIlH3w5518";
+
+    // ถ้า lang เริ่มด้วย "En" ให้ใช้ URL พิเศษ
+    if (lang.toLowerCase().startsWith("en")) {
+      targetUrl = "https://youtube.com/shorts/58KpJx5-bAg?feature=share";
+    }
+
+    // redirect อัตโนมัติ
+    window.location.href = targetUrl;
+  </script>
 </head>
 <body>
-  <p>กำลังพาคุณไปที่วิดีโอ... <a href="https://youtube.com/shorts/qmIlH3w5518">คลิกที่นี่หากไม่ถูก redirect อัตโนมัติ</a></p>
+  <p>
+    กำลังพาคุณไปที่วิดีโอ... 
+    <a id="manualLink" href="https://youtube.com/shorts/qmIlH3w5518">คลิกที่นี่หากไม่ถูก redirect อัตโนมัติ</a>
+  </p>
+
+  <script>
+    // update ลิงก์ fallback ให้ตรงกับ targetUrl
+    document.getElementById("manualLink").href = targetUrl;
+  </script>
 </body>
 </html>
